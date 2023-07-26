@@ -8,4 +8,9 @@ import lombok.Data;
 public class Contact {
     private String name;
     private int phoneNumber;
+
+    @Override
+    public String toString() {
+        return "Kontakt: " + name + ", numer telefonu: " + phoneNumber;
+    }
 }
