@@ -13,25 +13,32 @@ public class RandomNumbers {
         List<Integer> number = new ArrayList<>();
         Random random = new Random();
 
-        Supplier<Integer> randomNumbers = () -> random.nextInt(20);
+        suppList(number, 10, () -> random.nextInt(20));
+        consumeList(number, n -> System.out.print(n + " "));
+        predList(number, n -> n % 2 == 0);
+        System.out.println();
+        consumeList(number, n -> System.out.print(n + " "));
 
-        for (int i = 0; i < 10; i++) {
-            number.add(randomNumbers.get());
+    }
+    private static <T> void consumeList(List<T> list, Consumer<T> consumer){
+        for (T t : list) {
+            consumer.accept(t);
         }
+    }
 
-        Consumer<Integer> printNumber = n -> System.out.print(n + " ");
-        for (Integer integer : number) {
-            printNumber.accept(integer);
+    private static <T> void suppList(List<T> list, int toGenerate, Supplier<T> supplier){
+        for (int i = 0; i < toGenerate; i++) {
+            list.add(supplier.get());
         }
+    }
 
-        Predicate<Integer> filterList = n -> n % 2 == 0;
-        Iterator<Integer> iterator = number.iterator();
-        while(iterator.hasNext()){
-            Integer next = iterator.next();
-            if(filterList.test(next)){
+    private static <T> void predList(List<T> list, Predicate<T> predicate) {
+        Iterator<T> iterator = list.iterator();
+        while(iterator.hasNext()) {
+            T next = iterator.next();
+            if(predicate.test(next)){
                 iterator.remove();
             }
         }
-        System.out.println(number);
     }
 }
