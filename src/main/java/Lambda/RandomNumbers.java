@@ -1,6 +1,7 @@
 package Lambda;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Consumer;
@@ -24,5 +25,13 @@ public class RandomNumbers {
         }
 
         Predicate<Integer> filterList = n -> n % 2 == 0;
+        Iterator<Integer> iterator = number.iterator();
+        while(iterator.hasNext()){
+            Integer next = iterator.next();
+            if(filterList.test(next)){
+                iterator.remove();
+            }
+        }
+        System.out.println(number);
     }
 }
