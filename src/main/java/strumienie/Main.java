@@ -1,6 +1,5 @@
 package strumienie;
 
-import java.util.function.IntUnaryOperator;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
