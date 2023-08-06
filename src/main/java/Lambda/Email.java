@@ -65,4 +65,8 @@ class Email {
                 ", sent=" + sent +
                 '}';
     }
+
+    public boolean filterMail(String emailAddress) {
+        return sender.equals(emailAddress) || recipient.equals(emailAddress);
+    }
 }

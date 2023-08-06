@@ -2,18 +2,27 @@ package Lambda;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 class EmailManager {
     public static void main(String[] args) {
         List<Email> emailList = createEmailList();
-        //tylko wysłane emaile
+        List<Email> sentEmails2 = filterByPredicate(emailList, Email::isSent);
         List<Email> sentEmails = filterEmailsSent(emailList);
         System.out.println("Wysłane maile:");
         System.out.println(sentEmails);
-        //filtrowanie maili, w których nadawca lub odbiorca ma wskazany adres email
+        System.out.println();
+        System.out.println("Wysłane maile:");
+        System.out.println(sentEmails2);
+        System.out.println();
+//        filtrowanie maili, w których nadawca lub odbiorca ma wskazany adres email
         List<Email> bartEmails = filterEmailsBySenderOrRecipient(emailList, "bart@example.com");
         System.out.println("Maile przefiltrowane na podstawie nadawcy lub odbiorcy");
         System.out.println(bartEmails);
+        System.out.println();
+        List<Email> bartEmails2 = filterByPredicate(emailList, email -> email.filterMail("bart@example.com"));
+        System.out.println("Maile przefiltrowane na podstawie nadawcy lub odbiorcy");
+        System.out.println(bartEmails2);
     }
 
     private static List<Email> filterEmailsBySenderOrRecipient(List<Email> emails, String emailAddress) {
@@ -58,5 +67,15 @@ class EmailManager {
                 true)
         );
         return emails;
+    }
+
+    private static List<Email> filterByPredicate(List<Email> list, Predicate<Email> predicate){
+        List<Email> result = new ArrayList<>();
+        for (Email t : list) {
+            if(predicate.test(t)){
+                result.add(t);
+            }
+        }
+        return result;
     }
 }
