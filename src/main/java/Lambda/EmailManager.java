@@ -8,39 +8,12 @@ class EmailManager {
     public static void main(String[] args) {
         List<Email> emailList = createEmailList();
         List<Email> sentEmails2 = filterByPredicate(emailList, Email::isSent);
-        List<Email> sentEmails = filterEmailsSent(emailList);
-        System.out.println("Wysłane maile:");
-        System.out.println(sentEmails);
-        System.out.println();
         System.out.println("Wysłane maile:");
         System.out.println(sentEmails2);
-        System.out.println();
-//        filtrowanie maili, w których nadawca lub odbiorca ma wskazany adres email
-        List<Email> bartEmails = filterEmailsBySenderOrRecipient(emailList, "bart@example.com");
-        System.out.println("Maile przefiltrowane na podstawie nadawcy lub odbiorcy");
-        System.out.println(bartEmails);
         System.out.println();
         List<Email> bartEmails2 = filterByPredicate(emailList, email -> email.filterMail("bart@example.com"));
         System.out.println("Maile przefiltrowane na podstawie nadawcy lub odbiorcy");
         System.out.println(bartEmails2);
-    }
-
-    private static List<Email> filterEmailsBySenderOrRecipient(List<Email> emails, String emailAddress) {
-        List<Email> filteredEmails = new ArrayList<>();
-        for (Email email : emails) {
-            if (email.getSender().equals(emailAddress) || email.getRecipient().equals(emailAddress))
-                filteredEmails.add(email);
-        }
-        return filteredEmails;
-    }
-
-    private static List<Email> filterEmailsSent(List<Email> emails) {
-        List<Email> sentEmails = new ArrayList<>();
-        for (Email email : emails) {
-            if (email.isSent())
-                sentEmails.add(email);
-        }
-        return sentEmails;
     }
 
     private static List<Email> createEmailList() {
