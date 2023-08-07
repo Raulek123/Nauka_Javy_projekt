@@ -50,12 +50,7 @@ class Course {
 
     @Override
     public String toString() {
-        return "Course{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", category='" + category + '\'' +
-                '}';
+        return "ID: " + id + ". nazwa: " + name + ", cena: " + price + "zł, kategoria: " + category;
     }
 
     @Override
