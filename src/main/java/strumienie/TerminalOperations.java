@@ -13,6 +13,10 @@ public class TerminalOperations {
                 new Course(3L, "Tajniki Google", 299, "Marketing")
         );
 
+        Double sumPrice = courses.map(Course::getPrice)
+                .reduce(0.0, (result, next) -> result + next);
+        System.out.println(sumPrice);
+
         Stream<String> names = Stream.of("Ania", "Kasia", "Basia");
         String allNames = names.reduce("", (result, next) -> result + next + " ");
         System.out.println(allNames);
