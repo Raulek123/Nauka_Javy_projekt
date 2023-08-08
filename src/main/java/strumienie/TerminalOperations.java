@@ -1,5 +1,8 @@
 package strumienie;
 
+import java.util.List;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class TerminalOperations {
@@ -9,6 +12,9 @@ public class TerminalOperations {
                 new Course(2L, "Sztuka pisania", 99, "Rozwój osobisty"),
                 new Course(3L, "Tajniki Google", 299, "Marketing")
         );
-        Course[] courses1 = courses.toArray(Course[]::new);
+
+        Stream<String> names = Stream.of("Ania", "Kasia", "Basia");
+        String allNames = names.reduce("", (result, next) -> result + next + " ");
+        System.out.println(allNames);
     }
 }
