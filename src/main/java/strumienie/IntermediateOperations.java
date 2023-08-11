@@ -1,29 +1,20 @@
 package strumienie;
 
-import java.util.Arrays;
-import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class IntermediateOperations {
     public static void main(String[] args) {
 
-        Course[] cheapCourses = {
-                new Course(1L, "Java", 49, "Programowanie"),
-                new Course(2L, "Sztuka pisania", 79, "Rozwój osobisty"),
-        };
-        Course[] expensiveCourses = {
+        Stream<Course> courses = Stream.of(
+                new Course(1L, "Java", 249, "Programowanie"),
+                new Course(2L, "Sztuka pisania", 99, "Rozwój osobisty"),
+                new Course(1L, "Java", 249, "Programowanie"),
                 new Course(3L, "Tajniki Google", 299, "Marketing"),
-                new Course(4L, "Python od podstaw", 169, "Programowanie")
-        };
-        Stream.of(cheapCourses, expensiveCourses)
-                .flatMap(Arrays::stream)
-                .forEach(System.out::println);
-
-        IntStream.iterate(0, n -> n + 1)
-                .limit(100)
-                .boxed()
+                new Course(1L, "Java", 249, "Programowanie")
+        );
+        courses.map(Course::getName)
+                .filter(name -> name.equals("Java"))
                 .collect(Collectors.toList())
                 .forEach(System.out::println);
     }
