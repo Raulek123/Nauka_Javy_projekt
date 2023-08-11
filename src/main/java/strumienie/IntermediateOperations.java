@@ -2,6 +2,8 @@ package strumienie;
 
 import java.util.Arrays;
 import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class IntermediateOperations {
@@ -17,6 +19,12 @@ public class IntermediateOperations {
         };
         Stream.of(cheapCourses, expensiveCourses)
                 .flatMap(Arrays::stream)
+                .forEach(System.out::println);
+
+        IntStream.iterate(0, n -> n + 1)
+                .limit(100)
+                .boxed()
+                .collect(Collectors.toList())
                 .forEach(System.out::println);
     }
 }
