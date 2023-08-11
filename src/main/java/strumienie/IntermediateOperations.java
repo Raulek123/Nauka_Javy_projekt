@@ -1,14 +1,17 @@
 package strumienie;
 
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class IntermediateOperations {
     public static void main(String[] args) {
-        List<Integer> collect = IntStream.rangeClosed(0, 10)
-                .boxed()
-                .collect(Collectors.toList());
-        System.out.println(collect);
+        Stream<Course> courses = Stream.of(
+                new Course(1L, "Java", 199, "Programowanie"),
+                new Course(2L, "Sztuka pisania", 99, "Rozwój osobisty"),
+                new Course(3L, "Tajniki Google", 299, "Marketing"),
+                new Course(4L, "Zarządzanie zespołem", 159, "Biznes"),
+                new Course(5L, "Python od podstaw", 169, "Programowanie")
+        );
+
+
     }
 }
