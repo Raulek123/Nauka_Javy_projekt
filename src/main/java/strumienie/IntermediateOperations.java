@@ -11,10 +11,11 @@ public class IntermediateOperations {
                 new Course(2L, "Sztuka pisania", 99, "Rozwój osobisty"),
                 new Course(1L, "Java", 249, "Programowanie"),
                 new Course(3L, "Tajniki Google", 299, "Marketing"),
-                new Course(1L, "Java", 249, "Programowanie")
+                new Course(4L, "Java od podstaw", 249, "Programowanie")
         );
         courses.map(Course::getName)
-                .filter(name -> name.equals("Java"))
+                .map(String::toLowerCase)
+                .filter(name -> name.contains("java"))
                 .collect(Collectors.toList())
                 .forEach(System.out::println);
     }
